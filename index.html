@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAPTOR Flowchart — AI-Based Network Intrusion Detection System</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0B1714;
+      color: #F4F1EA;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+    }
+    h1 {
+      color: #E2B96F;
+      font-family: 'Times New Roman', serif;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    p.sub {
+      color: #A8C3BC;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: 1280px;
+    }
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: #102621;
+      border: 1px solid #E2B96F;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .card h2 {
+      color: #E2B96F;
+      font-size: 18px;
+      margin-top: 0;
+      border-bottom: 1px solid rgba(226, 185, 111, 0.3);
+      padding-bottom: 8px;
+    }
+    .mermaid {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      color: #E2B96F;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    select, button {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    select {
+      background: #0B1714;
+      color: #F4F1EA;
+      border: 1px solid #E2B96F;
+    }
+    button {
+      background: transparent;
+      color: #E2B96F;
+      border: 1.5px solid #E2B96F;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #E2B96F;
+      color: #0B1714;
+    }
+    .console {
+      background: #070F0D;
+      border: 1px solid #284B42;
+      border-radius: 8px;
+      padding: 14px;
+      font-family: Consolas, monospace;
+      font-size: 13px;
+      color: #7CE8B5;
+      min-height: 210px;
+      white-space: pre-line;
+      line-height: 1.5;
+    }
+    .watch {
+      margin-top: 14px;
+      background: #0B1714;
+      border: 1px dashed #E2B96F;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: Consolas, monospace;
+      font-size: 13px;
+      color: #E2B96F;
+    }
+  </style>
+</head>
+<body>
+  <h1>RAPTOR FLOWCHART — AI-BASED INTRUSION DETECTION SYSTEM</h1>
+  <p class="sub">Interactive Flowchart Diagram & Live Execution Console (11 Symbols Evaluated)</p>
+
+  <div class="container">
+    <div class="card">
+      <h2>Visual RAPTOR Control Flow Diagram</h2>
+      <div class="mermaid">
+        flowchart TD
+          Start([Start]) --> Out1[/"PUT 'AI-BASED INTRUSION DETECTION SYSTEM'"/]
+          Out1 --> Assign1["total_flows ← 120"]
+          Assign1 --> Assign2["threat_count ← 0"]
+          Assign2 --> In1[/"GET dataset_mode (1: Benchmark, 2: CSV)"/]
+          In1 --> Out2[/"PUT 'Extracting flow attributes: protocol, service, flags, bytes, counts'"/]
+          Out2 --> Out3[/"PUT 'Executing Random Forest Classifier model inference'"/]
+          Out3 --> In2[/"GET traffic_flag (1: Normal, 2: DoS, 3: Probe, 4: Unauthorized)"/]
+          In2 --> Cond1{"traffic_flag = 1?"}
+
+          Cond1 -- Yes --> OutNorm[/"PUT 'Status: Normal traffic flow verified. No threat detected.'"/]
+          OutNorm --> EndNode([End])
+
+          Cond1 -- No --> IncThreat["threat_count ← threat_count + 1"]
+          IncThreat --> Cond2{"traffic_flag = 2?"}
+          Cond2 -- Yes --> OutDoS[/"PUT 'Alert: Denial of Service attack detected. Initiating SYN rate limit rule.'"/]
+          Cond2 -- No --> Cond3{"traffic_flag = 3?"}
+          Cond3 -- Yes --> OutProbe[/"PUT 'Alert: PortScan probe detected. Dropping packets from source address.'"/]
+          Cond3 -- No --> OutUnauth[/"PUT 'Alert: Unauthorized access attempt detected. Terminating session privileges.'"/]
+
+          OutDoS --> CalcRate["anomaly_rate ← (threat_count / total_flows) * 100"]
+          OutProbe --> CalcRate
+          OutUnauth --> CalcRate
+
+          CalcRate --> OutDB[/"PUT 'Database: Scan summary and security alerts recorded in SQLite.'"/]
+          OutDB --> OutExp[/"PUT 'Inspection complete. Forensic scan report exported successfully.'"/]
+          OutExp --> EndNode
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Live RAPTOR MasterConsole Simulator</h2>
+      <label for="datasetMode">1. Select Dataset Mode (dataset_mode)</label>
+      <select id="datasetMode">
+        <option value="1">1 — Load Benchmark Network Dataset (120 flows)</option>
+        <option value="2">2 — Upload Custom Network Traffic CSV</option>
+      </select>
+
+      <label for="trafficFlag">2. Select Traffic Flag Code (traffic_flag)</label>
+      <select id="trafficFlag">
+        <option value="1">1 — Normal SF (No Threat)</option>
+        <option value="2">2 — DoS S0 (SYN Flood Attack)</option>
+        <option value="3">3 — Probe REJ (PortScan)</option>
+        <option value="4">4 — Unauthorized SSH Access</option>
+      </select>
+
+      <button onclick="runRaptor()">▶ Run RAPTOR Flowchart</button>
+
+      <div class="console" id="consoleOut">Click "Run RAPTOR Flowchart" to execute...</div>
+      <div class="watch" id="watchBox">Watch Window: Ready</div>
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+
+    function runRaptor() {
+      const mode = document.getElementById('datasetMode').value;
+      const flag = parseInt(document.getElementById('trafficFlag').value, 10);
+      const totalFlows = 120;
+      let threatCount = 0;
+      let symbols = 8;
+
+      let output = [
+        "Welcome to RAPTOR MasterConsole",
+        "AI-BASED INTRUSION DETECTION SYSTEM",
+        "Extracting flow attributes: protocol, service, flags, bytes, and connection counts",
+        "Executing Random Forest Classifier model inference"
+      ];
+
+      let watchText = `total_flows: ${totalFlows} | dataset_mode: ${mode} | traffic_flag: ${flag}`;
+
+      if (flag === 1) {
+        symbols = 11;
+        output.push("Status: Normal traffic flow verified. No threat detected.");
+        watchText += ` | threat_count: 0`;
+      } else {
+        threatCount = 1;
+        const anomalyRate = ((threatCount / totalFlows) * 100).toFixed(2);
+        if (flag === 2) {
+          symbols = 14;
+          output.push("Alert: Denial of Service attack detected. Initiating SYN rate limit rule.");
+        } else if (flag === 3) {
+          symbols = 15;
+          output.push("Alert: PortScan probe detected. Dropping packets from source address.");
+        } else {
+          symbols = 15;
+          output.push("Alert: Unauthorized access attempt detected. Terminating session privileges.");
+        }
+        output.push("Database: Scan summary and security alerts recorded in SQLite.");
+        output.push("Inspection complete. Forensic scan report exported successfully.");
+        watchText += ` | threat_count: ${threatCount} | anomaly_rate: ${anomalyRate}%`;
+      }
+
+      output.push(`--- Run Complete! ${symbols} Symbols Evaluated ---`);
+      document.getElementById('consoleOut').textContent = output.join("\n");
+      document.getElementById('watchBox').textContent = watchText;
+    }
+  </script>
+</body>
+</html>
